@@ -19,6 +19,7 @@
     "@babel/preset-env": "^7.20.2"
   },
   "scripts": {
+    "start": "babel-node ./app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec babel-node ./app.js"
   },
