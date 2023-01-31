@@ -1,6 +1,7 @@
 const express = require('express');
 const Blogs = require('../models/blogs');
 import blogVal from '../midleware/blogmidleware';
+import verifyToken from '../midleware/jwtAuth';
 import {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, commentside} from '../controllers/blogcontroller'
 // const insertBlog = require('../controllers/blogcontroller')
 const router = express.Router();
@@ -30,22 +31,22 @@ const router = express.Router();
  *          properties:
  *              title:
  *                  type: string
- *                  description: name of user
+ *                  description: title of blog
  *              image:
  *                  type: string
- *                  description: email of user
+ *                  description: blog's image
  *              body:
  *                  type: string
- *                  description: password of user
+ *                  description: the whole stoory
  *          example:
  *              title: education is better than war.
  *              image: hdfjgkhlkjghjghjghh
  *              body: for real education hide everything we need
  *  parameters:
- *           userId:
+ *           blogId:
  *              name : id
  *              in : path
- *              description: Id for specified userId
+ *              description: Id for specified blogId
  *              required: true
  *              schema:
  *                 type: string
@@ -101,7 +102,7 @@ router.get('/blogs', getBlogs)
   */
 
 
-router.post('/blogs',blogVal, insertBlog)
+router.post('/blogs',blogVal,verifyToken, insertBlog)
 
 //deleting blog
 
@@ -122,7 +123,7 @@ router.post('/blogs',blogVal, insertBlog)
 *        description: not found 
 */
 
-router.delete('/blogs/:id', deleteBlog)
+router.delete('/blogs/:id',verifyToken, deleteBlog)
 
 //updating blogs
 /**
@@ -150,7 +151,7 @@ router.delete('/blogs/:id', deleteBlog)
  *              description: not found  
  */
 
-router.patch('/blogs/:id', updateBlog)
+router.patch('/blogs/:id',verifyToken, updateBlog)
 
 /**
  * @swagger
