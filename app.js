@@ -7,7 +7,7 @@ const router = require('./src/routes/blogroutes')
 const router1 = require('./src/routes/userrooutes')
 const router2 = require('./src/routes/messageroutes')
 const port  = process.env.PORT;
-
+const app = express();
 const options = {
     swaggerDefinition:{
         openapi: '3.0.0',
@@ -40,19 +40,25 @@ const options = {
 
 const specs = swaggerJSDoc(options);
 
-//connection to database
-mongoose.set('strictQuery', false);
-    mongoose.connect(process.env.DB_URL,{ useNewUrlParser: true }).then(()=>{
-        const app = express();
-        app.use('/api-docs',SwaggerUI.serve,SwaggerUI.setup(specs));
+app.use('/api-docs',SwaggerUI.serve,SwaggerUI.setup(specs));
         app.use(express.json());
         app.use(express.urlencoded({extended: false}));
         app.use('/',router);
         app.use('/',router1);
         app.use('/',router2);
-        app.listen(port,(req,res)=>{
-            console.log('server running on port: ', port)
-        })
+
+app.listen(port,(req,res)=>{
+    console.log('server running on port: ', port)
+})
+
+//connection to database
+mongoose.set('strictQuery', false);
+    mongoose.connect(process.env.DB_URL_TEST,{ useNewUrlParser: true }).then(()=>{
+        
+    console.log("database connect")
+       
     }).catch((error)=>{
         console.log(error)
     })
+
+    export default app

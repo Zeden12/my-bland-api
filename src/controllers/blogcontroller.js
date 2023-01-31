@@ -17,7 +17,7 @@ const insertBlog =  async(req,res)=>{
         body: req.body.body
     })
     const blog = await insBlog.save();
-    res.json(blog);
+    res.status(200).json(blog);
 }
 
 const deleteBlog = async(req, res)=> {
