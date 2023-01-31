@@ -24,7 +24,7 @@ const router = express.Router();
  *      Users:
  *          type: object
  *          required:
- *              -name
+ *              -username
  *              -email
  *              -password
  *          properties:
@@ -38,7 +38,7 @@ const router = express.Router();
  *                  type: string
  *                  description: password of user
  *          example:
- *              name: zeden
+ *              username: zeden
  *              email: kwizeraernez@gmail.com
  *              password: cj zeden123
  *  parameters:
@@ -87,6 +87,9 @@ router.get('/users', getUsers)
  *    post:
  *      summary: user registration
  *      tags: [Users]
+ *      security:
+ *         - {}
+ *         - bearerAuth: []
  *      requestBody:
  *          required: true
  *          content:
@@ -132,6 +135,7 @@ router.post('/users',userVal, verifyToken, insertUser)
  */
 router.post('/users/login', login)
 
+//deleting user 
 /**
 * @swagger
 * /users/{id}:
@@ -154,6 +158,7 @@ router.post('/users/login', login)
 
 router.delete('/users/:id', deleteUser)
 
+//updating user
 /**
  * @swagger
  * /users/{id}:
@@ -184,6 +189,7 @@ router.delete('/users/:id', deleteUser)
 
 router.patch('/users/:id', updateUser)
 
+//get one user
 /**
  * @swagger
  * /users/{id}:

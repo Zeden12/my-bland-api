@@ -2,7 +2,7 @@ const Blogs = require('../models/blogs')
 const getBlogs = async(req,res)=>{
     try {
         const blogs = await Blogs.find();
-    res.send(blogs);
+    res.status(200).send(blogs);
     } 
     catch (error) {
         res.status(500).send('server error')
