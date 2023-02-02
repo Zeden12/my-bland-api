@@ -1,6 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
+import cors from 'cors';
 import swaggerJSDoc from 'swagger-jsdoc';
 import SwaggerUI from 'swagger-ui-express';
 const router = require('./src/routes/blogroutes')
@@ -47,6 +48,7 @@ mongoose.set('strictQuery', false);
         app.use('/api-docs',SwaggerUI.serve,SwaggerUI.setup(specs));
         app.use(express.json());
         app.use(express.urlencoded({extended: false}));
+        app.use(cors())
         app.use('/',router);
         app.use('/',router1);
         app.use('/',router2);
