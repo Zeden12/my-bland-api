@@ -1,3 +1,4 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 // const Schema = mongoose.Schema();
 const UserSchema = mongoose.Schema({
@@ -13,6 +14,10 @@ const UserSchema = mongoose.Schema({
         type: String,
         require: true,
         hidden: Boolean
+    },
+    role:{
+        type: String,
+        default: "user"
     },
 
     date: { type: Date, default: Date.now }

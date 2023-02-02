@@ -1,7 +1,7 @@
 const express = require('express');
 const Blogs = require('../models/blogs');
 import blogVal from '../midleware/blogmidleware';
-import verifyToken from '../midleware/jwtAuth';
+// import verifyToken from '../midleware/jwtAuth';
 import {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, commentside} from '../controllers/blogcontroller'
 // const insertBlog = require('../controllers/blogcontroller')
 const router = express.Router();
@@ -102,7 +102,7 @@ router.get('/blogs', getBlogs)
   */
 
 
-router.post('/blogs',blogVal,verifyToken, insertBlog)
+router.post('/blogs',blogVal, insertBlog)
 
 //deleting blog
 
@@ -123,7 +123,7 @@ router.post('/blogs',blogVal,verifyToken, insertBlog)
 *        description: not found 
 */
 
-router.delete('/blogs/:id',verifyToken, deleteBlog)
+router.delete('/blogs/:id', deleteBlog)
 
 //updating blogs
 /**
@@ -151,7 +151,7 @@ router.delete('/blogs/:id',verifyToken, deleteBlog)
  *              description: not found  
  */
 
-router.patch('/blogs/:id',verifyToken, updateBlog)
+router.patch('/blogs/:id', updateBlog)
 
 /**
  * @swagger

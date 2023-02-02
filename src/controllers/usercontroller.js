@@ -17,7 +17,8 @@ const insertUser =  async(req,res)=>{
     const insUser = new Users({
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        role: req.body.role
     })
     const email = insUser.email;
     const alreadyUser = await Users.findOne({email});
@@ -39,7 +40,8 @@ const insertUser =  async(req,res)=>{
 
 }
 
-const login = async(req,res)=>{
+const login  = async(req,res)=>{
+    let accessToken = ''
     try {
         const user = await Users.findOne({email:req.body.email});
         if(!user) return res.status(401).json({status:"fail",error:"Invalid credentials" });
@@ -48,11 +50,18 @@ const login = async(req,res)=>{
           res.status(401).json({status:"fail",error:"Invalid password" })
           return;
         }
-        const accessToken = jwt.sign({id:user._id},process.env.ACCESS_TOKEN)
-        res.status(200).json({status:"success",data:user,token:accessToken});
-      } catch (error) {
-        res.status(500).json({status:"fail", error: error.message });
-      }}
+        if(user.role === "admin"){
+         accessToken = jwt.sign({id:user._id},process.env.ADMIN_ACCESS_TOKEN)
+         res.status(200).json({status:"success",message:`user ${user.username} successfully logged in` ,token:accessToken});
+        }
+       else {
+         accessToken = jwt.sign({id:user._id},process.env.USER_ACCESS_TOKEN)
+         res.status(200).json({status:"success",message:`user ${user.username} successfully logged in` ,token:accessToken});
+       }
+    } catch (error) {
+      res.status(500).json({status:"fail", error: error.message });
+    }
+    }
 
 const deleteUser = async(req, res)=> {
     try {

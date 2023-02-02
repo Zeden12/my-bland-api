@@ -1,7 +1,8 @@
 const express = require('express');
 const Users = require('../models/users');
+import {requireAuth, checkUser} from '../midleware/verifyrole';
 import userVal from '../midleware/usermidleware';
-import verifyToken from '../midleware/jwtAuth';
+// import verifyToken from '../midleware/jwtAuth';
 import {getUsers, insertUser, deleteUser, updateUser, getOneUser, login} from '../controllers/usercontroller'
 const router = express.Router();
 
@@ -78,7 +79,7 @@ const router = express.Router();
  */
 
 
-router.get('/users', getUsers)
+router.get('/users',requireAuth, getUsers)
 
 //verify user signup
 /**
@@ -105,7 +106,7 @@ router.get('/users', getUsers)
   */
 //User regis
 
-router.post('/users',userVal, verifyToken, insertUser)
+router.post('/users',userVal, insertUser)
 
 //user login
 /**
@@ -156,7 +157,7 @@ router.post('/users/login', login)
 *        description: not found 
 */
 
-router.delete('/users/:id', deleteUser)
+router.delete('/users/:id',requireAuth, deleteUser)
 
 //updating user
 /**

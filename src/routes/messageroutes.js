@@ -2,7 +2,7 @@ const express = require('express');
 const Messages = require('../models/messages');
 import messageVal from '../midleware/messagemidleware';
 import {getMessages, insertMessage, deleteMessage, updateMessage, getOneMessage} from '../controllers/messagecontroller'
-import verifyToken from '../midleware/jwtAuth';
+// import verifyToken from '../midleware/jwtAuth';
 const router = express.Router();
 
 // Swagger documentation
@@ -101,7 +101,7 @@ router.get('/messages', getMessages)
   */
 
 
-router.post('/messages',messageVal,verifyToken, insertMessage)
+router.post('/messages',messageVal, insertMessage)
 
 //deleting message..
 
@@ -122,7 +122,7 @@ router.post('/messages',messageVal,verifyToken, insertMessage)
 *        description: not found 
 */
 
-router.delete('/messages/:id',verifyToken, deleteMessage)
+router.delete('/messages/:id', deleteMessage)
 
 //updating messages
 /**
@@ -150,7 +150,7 @@ router.delete('/messages/:id',verifyToken, deleteMessage)
  *              description: not found  
  */
 
-router.patch('/messages/:id',verifyToken, updateMessage)
+router.patch('/messages/:id', updateMessage)
 
 /**
  * @swagger
