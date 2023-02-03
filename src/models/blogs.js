@@ -13,6 +13,10 @@ const BlogSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    author:{
+        type: String,
+        require: true
+    },
 
     comments: [{
         type:mongoose.Schema.Types.ObjectId,

@@ -14,7 +14,8 @@ const insertBlog =  async(req,res)=>{
     const insBlog = new Blogs({
         title: req.body.title,
         image: req.body.image,
-        body: req.body.body
+        body: req.body.body,
+        author: req.body.author
     })
     const blog = await insBlog.save();
     res.json(blog);
@@ -51,6 +52,10 @@ const updateBlog = async (req, res) => {
 
 		if (req.body.body) {
 			Blog.body = req.body.body
+		}
+
+        if (req.body.author) {
+			Blog.author = req.body.author
 		}
 
 		await Blog.save()
