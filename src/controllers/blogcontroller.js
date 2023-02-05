@@ -1,3 +1,4 @@
+const cloudinary = require('../cloudinary');
 const Blogs = require('../models/blogs')
 const getBlogs = async(req,res)=>{
     try {
@@ -11,15 +12,24 @@ const getBlogs = async(req,res)=>{
 };
 
 const insertBlog =  async(req,res)=>{
-    const insBlog = new Blogs({
-        title: req.body.title,
-        image: req.body.image,
-        highlight: req.body.highlight,
-        body: req.body.body,
-        author: req.body.author
-    })
-    const blog = await insBlog.save();
-    res.json(blog);
+    try {
+        const imgUpload = await cloudinary.uploader.upload(req.body.image, {folder: 'zed_image'})
+        const insBlog = new Blogs({
+            title: req.body.title,
+            image: {
+                public_id: imgUpload.public_id,
+                url: imgUpload.secure_url
+            },
+            highlight: req.body.highlight,
+            body: req.body.body,
+            author: req.body.author
+        })
+        const blog = await insBlog.save();
+        res.json(blog);
+    } catch (error) {
+        res.status(500).json('server error')
+    }
+   
 }
 
 const deleteBlog = async(req, res)=> {
