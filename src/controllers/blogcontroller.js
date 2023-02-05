@@ -14,6 +14,7 @@ const insertBlog =  async(req,res)=>{
     const insBlog = new Blogs({
         title: req.body.title,
         image: req.body.image,
+        highlight: req.body.highlight,
         body: req.body.body,
         author: req.body.author
     })
@@ -48,6 +49,10 @@ const updateBlog = async (req, res) => {
 
         if (req.body.image) {
 			Blog.image = req.body.image
+		}
+
+        if (req.body.highlight) {
+			Blog.highlight = req.body.highlight
 		}
 
 		if (req.body.body) {

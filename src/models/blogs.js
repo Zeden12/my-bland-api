@@ -9,6 +9,11 @@ const BlogSchema = mongoose.Schema({
         type: String,
         requireL: true
     },
+    highlight:{
+        type: String,
+        require: true
+    },
+
     body:{
         type: String,
         require: true
