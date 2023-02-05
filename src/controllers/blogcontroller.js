@@ -13,6 +13,7 @@ const getBlogs = async(req,res)=>{
 
 const insertBlog =  async(req,res)=>{
     try {
+        let currentDate = new Date().toDateString();
         const imgUpload = await cloudinary.uploader.upload(req.body.image, {folder: 'zed_image'})
         const insBlog = new Blogs({
             title: req.body.title,
@@ -20,9 +21,9 @@ const insertBlog =  async(req,res)=>{
                 public_id: imgUpload.public_id,
                 url: imgUpload.secure_url
             },
-            highlight: req.body.highlight,
             body: req.body.body,
-            author: req.body.author
+            author: req.body.author,
+            date: currentDate
         })
         const blog = await insBlog.save();
         res.json(blog);
@@ -59,10 +60,6 @@ const updateBlog = async (req, res) => {
 
         if (req.body.image) {
 			Blog.image = req.body.image
-		}
-
-        if (req.body.highlight) {
-			Blog.highlight = req.body.highlight
 		}
 
 		if (req.body.body) {

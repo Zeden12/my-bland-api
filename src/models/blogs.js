@@ -1,3 +1,4 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 // const Schema = mongoose.Schema();
 const BlogSchema = mongoose.Schema({
@@ -15,10 +16,6 @@ const BlogSchema = mongoose.Schema({
             required: true
         }
     },
-    highlight:{
-        type: String,
-        required: true
-    },
 
     body:{
         type: String,
@@ -34,7 +31,7 @@ const BlogSchema = mongoose.Schema({
         ref:"Comment"
     }],
 
-    date: { type: Date, default: Date.now }
+    date: { type: String}
 })
 const Blogs = mongoose.model('Blogs',BlogSchema);
 module.exports = Blogs;
