@@ -2,8 +2,8 @@ const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
-import swaggerJSDoc from 'swagger-jsdoc';
-import SwaggerUI from 'swagger-ui-express';
+const swaggerJSDoc = require('swagger-jsdoc');
+const SwaggerUI = require('swagger-ui-express');
 const router = require('./src/routes/blogroutes')
 const router1 = require('./src/routes/userrooutes')
 const router2 = require('./src/routes/messageroutes')

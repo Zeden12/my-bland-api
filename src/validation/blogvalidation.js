@@ -1,10 +1,10 @@
-import Joi from "joi";
-const blogValidation = Joi.object({
-    title: Joi.string().min(7).required(),
-    image: Joi.string().required(),
-    highlight: Joi.string().min(5).required(),
-    body: Joi.string().min(20).required(),
-    author: Joi.string().min(5).required()
+const joi = require('joi');
+const blogValidation = joi.object({
+    title: joi.string().min(7).required(),
+    image: joi.string().required(),
+    highlight: joi.string().min(5).required(),
+    body: joi.string().min(20).required(),
+    author: joi.string().min(5).required()
 })
 
-export default blogValidation
+module.exports = blogValidation

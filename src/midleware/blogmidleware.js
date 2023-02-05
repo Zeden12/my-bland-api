@@ -1,4 +1,4 @@
-import blogValidation from "../validation/blogvalidation";
+const blogValidation = require("../validation/blogvalidation");
 const blogVal = async(req, res,next)=>{
     const {error, value} =  blogValidation.validate(req.body, {abortEarly : false});
     if(error){
@@ -8,4 +8,4 @@ const blogVal = async(req, res,next)=>{
     next();
 }
 
-export default blogVal
+module.exports = blogVal

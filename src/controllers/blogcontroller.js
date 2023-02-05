@@ -105,6 +105,6 @@ const getOneBlog = async(req,res)=>{
         }
       };
 
-export {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, commentside}
+module.exports = {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, commentside}
 // module.exports = getBlogs
 // module.exports = insertBlog

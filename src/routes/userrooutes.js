@@ -1,9 +1,9 @@
 const express = require('express');
 const Users = require('../models/users');
-import {requireAuth, checkUser} from '../midleware/verifyrole';
-import userVal from '../midleware/usermidleware';
+const {requireAuth, checkUser} = ('../midleware/verifyrole');
+const userVal = require('../midleware/usermidleware');
 // import verifyToken from '../midleware/jwtAuth';
-import {getUsers, insertUser, deleteUser, updateUser, getOneUser, login} from '../controllers/usercontroller'
+const {getUsers, insertUser, deleteUser, updateUser, getOneUser, login} = require('../controllers/usercontroller')
 const router = express.Router();
 
 // Swagger documentation
@@ -79,7 +79,7 @@ const router = express.Router();
  */
 
 
-router.get('/users',requireAuth, getUsers)
+router.get('/users', getUsers)
 
 //verify user signup
 /**
@@ -157,7 +157,7 @@ router.post('/users/login', login)
 *        description: not found 
 */
 
-router.delete('/users/:id',requireAuth, deleteUser)
+router.delete('/users/:id', deleteUser)
 
 //updating user
 /**

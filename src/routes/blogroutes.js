@@ -1,8 +1,9 @@
 const express = require('express');
 const Blogs = require('../models/blogs');
-import blogVal from '../midleware/blogmidleware';
+const blogVal = require ('../midleware/blogmidleware');
 // import verifyToken from '../midleware/jwtAuth';
-import {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, commentside} from '../controllers/blogcontroller'
+const {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, commentside} = require('../controllers/blogcontroller');
+const blogValidation = require('../validation/blogvalidation');
 // const insertBlog = require('../controllers/blogcontroller')
 const router = express.Router();
 

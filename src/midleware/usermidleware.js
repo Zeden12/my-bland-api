@@ -1,4 +1,4 @@
-import userValidation from "../validation/uservalidation";
+const userValidation = require("../validation/uservalidation");
 const userVal = async(req, res,next)=>{
     const {error, value} =  userValidation.validate(req.body, {abortEarly : false});
     if(error){
@@ -8,4 +8,4 @@ const userVal = async(req, res,next)=>{
     next();
 }
 
-export default userVal
+module.exports = userVal

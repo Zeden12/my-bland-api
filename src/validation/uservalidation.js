@@ -1,9 +1,9 @@
-import Joi from "joi";
-const userValidation = Joi.object({
-    username: Joi.string().min(5).required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().min(5).max(10).required(),
-    role: Joi.string()
+const joi = require("joi")
+const userValidation = joi.object({
+    username: joi.string().min(5).required(),
+    email: joi.string().email().required(),
+    password: joi.string().min(5).max(10).required(),
+    role: joi.string()
 })
 
-export default userValidation
+module.exports = userValidation

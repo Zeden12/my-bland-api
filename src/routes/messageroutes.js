@@ -1,7 +1,7 @@
 const express = require('express');
 const Messages = require('../models/messages');
-import messageVal from '../midleware/messagemidleware';
-import {getMessages, insertMessage, deleteMessage, updateMessage, getOneMessage} from '../controllers/messagecontroller'
+const messageVal = require('../midleware/messagemidleware');
+const {getMessages, insertMessage, deleteMessage, updateMessage, getOneMessage} = require('../controllers/messagecontroller')
 // import verifyToken from '../midleware/jwtAuth';
 const router = express.Router();
 

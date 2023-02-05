@@ -75,4 +75,4 @@ const getOneMessage = async(req,res)=>{
         
     }}
 
-export {getMessages, insertMessage, deleteMessage, updateMessage, getOneMessage}
+module.exports = {getMessages, insertMessage, deleteMessage, updateMessage, getOneMessage}

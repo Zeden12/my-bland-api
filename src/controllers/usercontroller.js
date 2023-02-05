@@ -118,4 +118,4 @@ const getOneUser = async(req,res)=>{
         
     }}
 
-export {getUsers, insertUser,login, deleteUser, updateUser, getOneUser}
+module.exports = {getUsers, insertUser,login, deleteUser, updateUser, getOneUser}

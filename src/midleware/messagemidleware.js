@@ -1,4 +1,4 @@
-import messageValidation from "../validation/messagevalidation";
+const messageValidation = require("../validation/messagevalidation");
 const messageVal = async(req, res,next)=>{
     const {error, value} =  messageValidation.validate(req.body, {abortEarly : false});
     if(error){
@@ -8,4 +8,4 @@ const messageVal = async(req, res,next)=>{
     next();
 }
 
-export default messageVal
+module.exports = messageVal

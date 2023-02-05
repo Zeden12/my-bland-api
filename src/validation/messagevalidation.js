@@ -1,8 +1,8 @@
-import Joi from "joi";
-const messageValidation = Joi.object({
-    username: Joi.string().min(5).required(),
-    email: Joi.string().required(),
-    idea: Joi.string().min(20).required()
+const joi = require('joi');
+const messageValidation = joi.object({
+    username: joi.string().min(5).required(),
+    email: joi.string().required(),
+    idea: joi.string().min(20).required()
 })
 
-export default messageValidation
+module.exports = messageValidation
