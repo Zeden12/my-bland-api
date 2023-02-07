@@ -103,7 +103,7 @@ router.get('/blogs', getBlogs)
   */
 
 
-router.post('/blogs',blogVal, insertBlog)
+router.post('/blogs', insertBlog)
 
 //deleting blog
 

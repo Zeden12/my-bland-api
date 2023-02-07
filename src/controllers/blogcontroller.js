@@ -59,7 +59,11 @@ const updateBlog = async (req, res) => {
 		}
 
         if (req.body.image) {
-			Blog.image = req.body.image
+            const imgUpload = await cloudinary.uploader.upload(req.body.image, {folder: 'zed_image'})
+			Blog.image = {
+                public_id: imgUpload.public_id,
+                url: imgUpload.secure_url
+            }
 		}
 
 		if (req.body.body) {
@@ -73,7 +77,7 @@ const updateBlog = async (req, res) => {
 		await Blog.save()
 		res.send(Blog)
 	} catch {
-		res.status(404)
+		res.status(500)
 		res.send({ error: "Post doesn't exist!" })
 	}
 }
