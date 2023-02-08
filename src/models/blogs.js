@@ -26,9 +26,17 @@ const BlogSchema = mongoose.Schema({
         required: true
     },
 
-    comments: [{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Comment"
+    Comments: [{ 
+        Time: String,
+        date: String,
+        username: String,
+        Comment: String
+    }],
+    
+    likes:[{
+        type: mongoose.Schema.Types.ObjectId,
+         ref:'BlogLike'
+        
     }],
 
     date: { type: String}
