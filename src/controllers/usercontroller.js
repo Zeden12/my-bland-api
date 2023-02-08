@@ -52,11 +52,11 @@ const login  = async(req,res)=>{
         }
         if(user.role === "admin"){
          accessToken = jwt.sign({id:user._id},process.env.ADMIN_ACCESS_TOKEN)
-         res.status(200).json({status:"success",message:`user ${user.username} successfully logged in` ,token:accessToken});
+         res.status(200).json({status:"success",message:`user ${user.username} successfully logged in`,role: user.role ,token:accessToken});
         }
        else {
          accessToken = jwt.sign({id:user._id},process.env.USER_ACCESS_TOKEN)
-         res.status(200).json({status:"success",message:`user ${user.username} successfully logged in` ,token:accessToken});
+         res.status(200).json({status:"success",message:`user ${user.username} successfully logged in`,role: user.role  ,token:accessToken});
        }
     } catch (error) {
       res.status(500).json({status:"fail", error: error.message });

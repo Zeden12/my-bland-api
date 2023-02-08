@@ -1,8 +1,9 @@
 const express = require('express');
 const Blogs = require('../models/blogs');
 const blogVal = require ('../midleware/blogmidleware');
+const {checkUser} = require("../midleware/verifyrole")
 // import verifyToken from '../midleware/jwtAuth';
-const {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, Commentside,  AllCommets, singleBlogComments} = require('../controllers/blogcontroller');
+const {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, Commentside,  AllCommets, singleBlogComments, like} = require('../controllers/blogcontroller');
 const blogValidation = require('../validation/blogvalidation');
 // const insertBlog = require('../controllers/blogcontroller')
 const router = express.Router();
@@ -183,5 +184,7 @@ router.get('/blogs/:id', getOneBlog)
 router.post("/blogs/comments/:blog_id", Commentside)
 router.post("/blogs/comments/", AllCommets)
 router.get("/blogs/allComments/:blog_id", singleBlogComments)
+
+router.put('/blogs/:id/like',checkUser, like)
 
 module.exports = router

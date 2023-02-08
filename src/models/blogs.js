@@ -33,11 +33,13 @@ const BlogSchema = mongoose.Schema({
         Comment: String
     }],
     
-    likes:[{
-        type: mongoose.Schema.Types.ObjectId,
-         ref:'BlogLike'
-        
-    }],
+    likes: {
+        count: {
+            type: Number,
+            default: 0
+        },
+        Peaples: []
+    },
 
     date: { type: String}
 })
