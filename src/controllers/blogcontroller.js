@@ -208,21 +208,21 @@ const getOneBlog = async(req,res)=>{
             let count = blog.likes.count+1
             let user = blog.likes.Peaples
             user.push(email)
-            await Blogs.findByIdAndUpdate(
+            const blogLike = await Blogs.findByIdAndUpdate(
                 {_id: blogId},
                 {likes: {count: count, Peaples: user}}
             )
-            res.status(200).json("liked")
+            res.status(200).json({status:"liked", like: blogLike.likes})
 
         }
         else{
             let count = blog.likes.count-1
             let user = blog.likes.Peaples.filter((eml) => eml != email)
-            await Blogs.findByIdAndUpdate(
+            const blogLike = await Blogs.findByIdAndUpdate(
                 {_id: blogId},
                 {likes: {count, Peaples: user}}
             )
-            res.status(200).json("like removed")
+            res.status(200).json({status:"unliked", like: blogLike.likes})
         }
     }
 
