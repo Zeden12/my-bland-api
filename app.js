@@ -13,9 +13,9 @@ const options = {
     swaggerDefinition:{
         openapi: '3.0.0',
         info: {
-            title: 'My brand api',
+            title: 'KCE brand api',
             version: '1.0.0',
-            description: 'Simple express api'
+            description: 'ZEDArt API Documentation'
         },
         servers: [{
             url : process.env.SWAGGER_URL

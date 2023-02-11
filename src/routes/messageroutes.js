@@ -84,7 +84,7 @@ router.get('/messages', getMessages)
  * @swagger
  * /messages:
  *    post:
- *      summary: uinserting message
+ *      summary: inserting message
  *      tags: [Messages]
  *      requestBody:
  *          required: true
@@ -111,6 +111,9 @@ router.post('/messages',messageVal, insertMessage)
 *  delete:
 *   summary: Delete one message
 *   tags: [Messages]
+*   security:
+*   - {}
+*   - bearerAuth: []
 *   parameters:
 *          - $ref: '#/components/parameters/messageId'
 *   responses:

@@ -226,6 +226,17 @@ const getOneBlog = async(req,res)=>{
         }
     }
 
-module.exports = {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, Commentside, AllCommets,singleBlogComments, like}
+    const getLike = async(req,res)=>{
+        try {
+            const id = req.params.id;
+            let allLikes = await Blogs.findById(id);
+            let getLikes = allLikes.likes;
+            res.status(200).json(getLikes.count);
+        } catch (error) {
+            res.status(404).json('like not found')
+        }
+    }
+
+module.exports = {getBlogs, insertBlog, deleteBlog, updateBlog, getOneBlog, Commentside, AllCommets,singleBlogComments, like, getLike}
 // module.exports = getBlogs
 // module.exports = insertBlog
